@@ -5,7 +5,7 @@ description: Use when user wants to stress-test a plan, get challenged on their 
 
 # Stress-Test
 
-Adversarial plan review through structured interrogation. Surfaces hidden assumptions, missing problems, incoherent design, and failure modes the author can't see due to confirmation bias.
+Adversarial design review through structured interrogation. Surfaces hidden assumptions, missing problems, incoherent design, and failure modes the author can't see due to confirmation bias.
 
 ## Two Premises That Shape Every Phase
 
