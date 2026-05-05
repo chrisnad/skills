@@ -10,15 +10,15 @@ Break a PRD into a Jira Epic with child Tasks using vertical slices (tracer bull
 ## When NOT to use
 
 - Single-task work or bug fixes — create one ticket directly
-- Non-ACTP projects — constants below are ACTP-specific
+- Non-<projectID> projects — constants below are <projectID>-specific
 - Unapproved PRDs — epic should reflect committed scope
 
-## Constants
+## Constants (personnalize)
 
-- **Cloud ID**: `datadoghq.atlassian.net`
-- **Project**: `ACTP`
-- **Assignee**: `712020:e5cb934c-ea6c-439f-a853-5b97edfdaf13` (chris.nader — update if skill is reused)
-- **Board ID**: `8322`
+- **Cloud ID**: `<company>.atlassian.net`
+- **Project**: `<projectID>`
+- **Assignee**: `<assignee ID / your atlassian ID>`
+- **Board ID**: `<board ID>`
 
 ## Quick Reference
 
@@ -80,13 +80,13 @@ Ask the user:
 Create the parent Epic using `mcp__atlassian__createJiraIssue`:
 
 ```
-cloudId: "datadoghq.atlassian.net"
-projectKey: "ACTP"
+cloudId: "<company>.atlassian.net"
+projectKey: "<projectID>"
 issueTypeName: "Epic"
 summary: "<Epic title derived from PRD>"
 description: <see epic-template below>
 contentFormat: "markdown"
-assignee_account_id: "712020:e5cb934c-ea6c-439f-a853-5b97edfdaf13"
+assignee_account_id: ...
 ```
 
 <epic-template>
@@ -103,20 +103,20 @@ assignee_account_id: "712020:e5cb934c-ea6c-439f-a853-5b97edfdaf13"
 [Numbered list of all planned task slices with their titles]
 </epic-template>
 
-Record the Epic's issue key (e.g., ACTP-XXX) for use as the parent.
+Record the Epic's issue key (e.g., <projectID>-XXX) for use as the parent.
 
 ### 6. Create the Jira Tasks
 
 For each approved slice, create a Task using `mcp__atlassian__createJiraIssue`:
 
 ```
-cloudId: "datadoghq.atlassian.net"
-projectKey: "ACTP"
+cloudId: "<company>.atlassian.net"
+projectKey: "<projectID>"
 issueTypeName: "Task"
 summary: "<slice title>"
 description: <see task-template below>
 contentFormat: "markdown"
-assignee_account_id: "712020:e5cb934c-ea6c-439f-a853-5b97edfdaf13"
+assignee_account_id: ...
 parent: "<EPIC-KEY>"
 ```
 
@@ -158,7 +158,7 @@ HITL / AFK
 After all tasks are created, for each blocking relationship use `mcp__atlassian__createIssueLink`:
 
 ```
-cloudId: "datadoghq.atlassian.net"
+cloudId: "<company>.atlassian.net"
 type: "Blocks"
 inwardIssue: "<BLOCKER-KEY>"    (the task that blocks)
 outwardIssue: "<BLOCKED-KEY>"   (the task that is blocked)
@@ -170,11 +170,11 @@ Print a summary table:
 
 | Key | Title | Type | Blocked by |
 |-----|-------|------|------------|
-| ACTP-XXX | Epic title | Epic | - |
-| ACTP-YYY | Slice 1 | AFK | None |
-| ACTP-ZZZ | Slice 2 | HITL | ACTP-YYY |
+| <projectID>-XXX | Epic title | Epic | - |
+| <projectID>-YYY | Slice 1 | AFK | None |
+| <projectID>-ZZZ | Slice 2 | HITL | <projectID>-YYY |
 
-Include the board URL: `https://datadoghq.atlassian.net/jira/software/c/projects/ACTP/boards/8322`
+Include the board URL: `https://<company>.atlassian.net/jira/software/c/projects/<projectID>/boards/<boardID>`
 
 ## Common Mistakes
 
